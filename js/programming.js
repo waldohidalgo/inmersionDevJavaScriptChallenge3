@@ -1,10 +1,26 @@
 import Swiper from "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs";
 const swiperPython = document.getElementById("swiper__python");
 const videosPython = [
-  { id: 1, titulo: "Python desde Cero Básico", url: "/img/Python1.jpg" },
-  { id: 2, titulo: "Aprende a Programar en Python", url: "/img/Python3.png" },
-  { id: 3, titulo: "Python desde Cero Intermedio", url: "/img/Python2.jpg" },
-  { id: 4, titulo: "Full Course Python", url: "/img/Python4.jpg" },
+  {
+    id: 1,
+    titulo: "Python desde Cero Básico",
+    url: window.location.href + "/img/Python1.jpg",
+  },
+  {
+    id: 2,
+    titulo: "Aprende a Programar en Python",
+    url: window.location.href + "/img/Python3.png",
+  },
+  {
+    id: 3,
+    titulo: "Python desde Cero Intermedio",
+    url: window.location.href + "/img/Python2.jpg",
+  },
+  {
+    id: 4,
+    titulo: "Full Course Python",
+    url: window.location.href + "/img/Python4.jpg",
+  },
 ];
 let swiper = null;
 
@@ -119,7 +135,7 @@ formulario.addEventListener("submit", (e) => {
     Swal.fire({
       title: "¡ Has Agregado un Video !",
       text: `Has agregado un nuevo video de manera exitosa`,
-      imageUrl: "../img/minions.gif", // URL de la imagen
+      imageUrl: window.location.href + "/img/minions.gif", // URL de la imagen
       imageAlt: "Success", // Texto alternativo de la imagen
       showCancelButton: false, // Sin botón de cancelar
       confirmButtonText: "OK", // Texto del botón OK
