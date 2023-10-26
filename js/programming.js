@@ -125,6 +125,7 @@ imagen.addEventListener("change", (e) => {
       fileReader.onload = function () {
         const imageUrl = fileReader.result;
         imagenURL = imageUrl;
+
         document.getElementById("contenedor__formulario__imagenpreview").src =
           imageUrl;
       };
@@ -147,6 +148,7 @@ function resetearCampos() {
   document.getElementById("URLVideoYoutube").value = "";
   imagenURL = "";
   document.getElementById("contenedor__formulario__imagenpreview").src = "";
+  document.getElementById("ImagenVideo").value = "";
 }
 
 formularioAgregar.addEventListener("submit", (e) => {
