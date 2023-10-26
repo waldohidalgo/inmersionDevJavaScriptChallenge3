@@ -38,6 +38,12 @@ function renderizarSlider() {
   }
   swiper = new Swiper(".mySwiperPython", {
     loop: true,
+    slidesPerView: 1,
+    spaceBetween: 10,
+    breakpoints: {
+      550: { slidesPerView: 2, spaceBetween: 10 },
+      850: { slidesPerView: 3, spaceBetween: 10 },
+    },
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
@@ -45,12 +51,6 @@ function renderizarSlider() {
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
-    },
-    breakpoints: {
-      1024: { slidesPerView: 3, spaceBetween: 10 },
-      850: { slidesPerView: 2, spaceBetween: 10 },
-      550: { slidesPerView: 1, spaceBetween: 10 },
-      440: { slidesPerView: 1, spaceBetween: 10 },
     },
   });
 }

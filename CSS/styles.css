@@ -44,10 +44,6 @@ body {
   right: 10px;
 }
 
-body > img {
-  margin: 0 10px;
-}
-
 @font-face {
   font-family: "calistoga";
   src: url("./Calistoga-Regular.ttf") format("truetype");

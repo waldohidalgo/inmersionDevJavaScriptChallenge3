@@ -13,12 +13,17 @@
 
 .border-divided {
   margin-top: 5px;
-  width: 100%; /* Ancho de tu elemento */
+  width: 80%; /* Ancho de tu elemento */
+  margin-left: auto;
+  margin-right: auto;
   height: 5px; /* Altura de tu elemento */
   background-image: linear-gradient(to right, blue 50%, yellow 50%);
   background-size: 100% 2px; /* 2px para el grosor del borde inferior */
   background-position: 0 100%; /* Alinea el borde en la parte inferior */
   border: none; /* Elimina cualquier borde predeterminado */
+  @media screen and (min-width: 550px) {
+    width: 100%;
+  }
 }
 
 .contenedor__videos__titulo__gif {
