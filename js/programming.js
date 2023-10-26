@@ -37,11 +37,7 @@ function renderizarSlider() {
     swiperPython.appendChild(nuevoDiv);
   }
   swiper = new Swiper(".mySwiperPython", {
-    slidesPerView: 3,
-    spaceBetween: 0,
-    freeMode: true,
     loop: true,
-    spaceBetween: 10,
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
@@ -51,11 +47,10 @@ function renderizarSlider() {
       prevEl: ".swiper-button-prev",
     },
     breakpoints: {
-      0: {
-        slidesPerView: 1,
-      },
-      500: { slidesPerView: 2 },
-      900: { slidesPerView: 3 },
+      1024: { slidesPerView: 3, spaceBetween: 10 },
+      850: { slidesPerView: 2, spaceBetween: 10 },
+      550: { slidesPerView: 1, spaceBetween: 10 },
+      440: { slidesPerView: 1, spaceBetween: 10 },
     },
   });
 }
