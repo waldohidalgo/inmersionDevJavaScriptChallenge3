@@ -1,0 +1,32 @@
+.swiper {
+  width: 100%;
+  height: 300px;
+}
+
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+}
+
+.swiper-slide__python {
+  background-color: #3669a1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: blue !important;
+  border: 2px solid white;
+}
+
+.swiper-button-prev {
+  color: blue;
+  font-weight: 700;
+}
+
+.swiper-button-next {
+  color: yellow;
+  font-weight: 700;
+}
