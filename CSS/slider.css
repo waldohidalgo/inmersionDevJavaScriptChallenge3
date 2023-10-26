@@ -1,5 +1,9 @@
 .swiper {
-  height: 300px;
+}
+.swiper-wrapper {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .swiper-slide {
@@ -9,6 +13,7 @@
   align-items: center;
   border-left: 2px solid white;
   border-right: 2px solid white;
+  height: 300px;
 }
 
 .swiper-slide__python {

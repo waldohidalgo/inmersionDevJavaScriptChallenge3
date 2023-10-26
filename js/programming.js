@@ -22,6 +22,31 @@ const videosPython = [
     url: window.location.href + "/img/Python4.jpg",
   },
 ];
+/*
+ [
+  {
+    id: 1,
+    titulo: "Python desde Cero Básico",
+    url: window.location.href + "/img/Python1.jpg",
+  },
+  {
+    id: 2,
+    titulo: "Aprende a Programar en Python",
+    url: window.location.href + "/img/Python3.png",
+  },
+  {
+    id: 3,
+    titulo: "Python desde Cero Intermedio",
+    url: window.location.href + "/img/Python2.jpg",
+  },
+  {
+    id: 4,
+    titulo: "Full Course Python",
+    url: window.location.href + "/img/Python4.jpg",
+  },
+];
+
+*/
 let swiper = null;
 
 function renderizarSlider() {
@@ -76,7 +101,7 @@ function addNewVideo(video) {
 
 /*Lógica de agregar videos  */
 
-const formulario = document.getElementById("formulario");
+const formularioAgregar = document.getElementById("formularioAgregar");
 const imagen = document.getElementById("ImagenVideo");
 let imagenURL = "";
 imagen.addEventListener("change", (e) => {
@@ -108,7 +133,7 @@ imagen.addEventListener("change", (e) => {
   }
 });
 
-formulario.addEventListener("submit", (e) => {
+formularioAgregar.addEventListener("submit", (e) => {
   e.preventDefault();
   const titulo = document.getElementById("TituloVideo");
 
@@ -127,6 +152,7 @@ formulario.addEventListener("submit", (e) => {
       url: imagenURL,
     };
     addNewVideo(video);
+    renderizaOptions();
     Swal.fire({
       title: "¡ Has Agregado un Video !",
       text: `Has agregado un nuevo video de manera exitosa`,
@@ -156,5 +182,60 @@ formulario.addEventListener("submit", (e) => {
         text: "Debes seleccionar una imagen para continuar",
       });
     }
+  }
+});
+
+/*Lógica de Eliminar Videos*/
+
+function borrarVideo(id) {
+  const indexElementoaBorrar = videosPython.map((obj) => obj.id).indexOf(id);
+  videosPython.splice(indexElementoaBorrar, 1);
+}
+
+function renderizaOptions() {
+  const selectTag = document.getElementById("seleccionaPeliculaEliminar");
+  selectTag.innerHTML = "";
+  const optionSelect = document.createElement("option");
+  optionSelect.value = "Selecciona un Elemento";
+  optionSelect.text = "Selecciona un Elemento";
+  optionSelect.hidden = true;
+  selectTag.appendChild(optionSelect);
+  videosPython.forEach((objetoVideo) => {
+    const option = document.createElement("option");
+    option.value = objetoVideo.id;
+    option.text = objetoVideo.titulo;
+    selectTag.appendChild(option);
+  });
+}
+
+renderizaOptions();
+
+const formularioEliminar = document.getElementById("formularioEliminar");
+formularioEliminar.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const selectTag = document.getElementById("seleccionaPeliculaEliminar");
+  const id = +selectTag.value;
+
+  if (isNaN(id)) {
+    Swal.fire({
+      icon: "error",
+      title: "No has seleccionado video a eliminar",
+      text: "Debes seleccionar un video para lograr eliminar",
+    });
+  } else {
+    borrarVideo(id);
+    renderizaOptions();
+    swiper.destroy(true, true);
+    document.getElementById("swiper__python").innerHTML = "";
+    renderizarSlider();
+    Swal.fire({
+      title: "¡ Has Eliminado un Video !",
+      text: `Has eliminado el video seleccionado de manera exitosa`,
+      imageUrl: window.location.href + "/img/minions.gif", // URL de la imagen
+      imageAlt: "Success", // Texto alternativo de la imagen
+      showCancelButton: false, // Sin botón de cancelar
+      confirmButtonText: "OK", // Texto del botón OK
+      confirmButtonColor: "#4CAF50", // Color verde para el botón OK
+    });
   }
 });
