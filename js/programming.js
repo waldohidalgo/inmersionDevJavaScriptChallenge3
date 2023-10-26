@@ -5,21 +5,25 @@ const videosPython = [
     id: 1,
     titulo: "Python desde Cero Básico",
     url: window.location.href + "/img/Python1.jpg",
+    urlVideo: "https://www.youtube.com/watch?v=Kp4Mvapo5kc",
   },
   {
     id: 2,
     titulo: "Aprende a Programar en Python",
     url: window.location.href + "/img/Python3.png",
+    urlVideo: "https://www.youtube.com/watch?v=DLikpfc64cA",
   },
   {
     id: 3,
     titulo: "Python desde Cero Intermedio",
     url: window.location.href + "/img/Python2.jpg",
+    urlVideo: "https://www.youtube.com/watch?v=TbcEqkabAWU",
   },
   {
     id: 4,
     titulo: "Full Course Python",
     url: window.location.href + "/img/Python4.jpg",
+    urlVideo: "https://www.youtube.com/watch?v=rfscVS0vtbw",
   },
 ];
 /*
@@ -52,7 +56,8 @@ let swiper = null;
 function renderizarSlider() {
   const arrayPythonSlider = videosPython.map((objetoVideo) => {
     return `<h1 class="swiper__titulo">${objetoVideo.titulo}</h1>
-  <img class="swiper__imagen" src='${objetoVideo.url}'/>`;
+    <a href='${objetoVideo.urlVideo}' target='_blank'>
+  <img class="swiper__imagen" src='${objetoVideo.url}' title='${objetoVideo.titulo}'/></a>`;
   });
   for (let swiperHTML of arrayPythonSlider) {
     const nuevoDiv = document.createElement("div");
@@ -133,14 +138,27 @@ imagen.addEventListener("change", (e) => {
   }
 });
 
+function validarURLVideo(urlVideo) {
+  return /(https:\/\/www\.youtube\.com\/watch\?v=).+/.test(urlVideo);
+}
+
+function resetearCampos() {
+  document.getElementById("TituloVideo").value = "";
+  document.getElementById("URLVideoYoutube").value = "";
+  imagenURL = "";
+  document.getElementById("contenedor__formulario__imagenpreview").src = "";
+}
+
 formularioAgregar.addEventListener("submit", (e) => {
   e.preventDefault();
   const titulo = document.getElementById("TituloVideo");
+  const urlVideo = document.getElementById("URLVideoYoutube");
 
   if (
     titulo.value != "" &&
     !videosPython.map((obj) => obj.titulo).includes(titulo.value) &&
-    imagenURL.length > 0
+    imagenURL.length > 0 &&
+    validarURLVideo(urlVideo.value)
   ) {
     const nuevoIndex = videosPython.length + 1;
     const video = {
@@ -150,9 +168,11 @@ formularioAgregar.addEventListener("submit", (e) => {
           ? titulo.value.substring(0, 17) + "..."
           : titulo.value,
       url: imagenURL,
+      urlVideo: urlVideo.value,
     };
     addNewVideo(video);
     renderizaOptions();
+    resetearCampos();
     Swal.fire({
       title: "¡ Has Agregado un Video !",
       text: `Has agregado un nuevo video de manera exitosa`,
@@ -168,6 +188,12 @@ formularioAgregar.addEventListener("submit", (e) => {
         icon: "error",
         title: "Campo Vacío",
         text: "El campo Título esta vacío. Debes ingresar un título",
+      });
+    } else if (!validarURLVideo(urlVideo.value)) {
+      Swal.fire({
+        icon: "error",
+        title: "URL No Válida",
+        text: "La URL que has ingresado no pertenece a un video de youtube",
       });
     } else if (videosPython.map((obj) => obj.titulo).includes(titulo.value)) {
       Swal.fire({

@@ -91,7 +91,8 @@ body {
   padding-bottom: 1rem;
 }
 
-#TituloVideo {
+#TituloVideo,
+#URLVideoYoutube {
   padding: 5px;
   border-radius: 10px;
   font-size: 1.5rem;
